@@ -1,7 +1,10 @@
 # maak een functie die een dictionary van kwadraten generereert tot de 'limit'
 # voorbeeld: squares(5) == {1:1, 2:4, 3:9, 4:16, 5:25}
 def squares(limit):
-    pass
+    res = {}
+    for i in range(1, limit + 1):
+        res.update({i: i ** 2})
+    return res
 
 
 auto = {
@@ -18,13 +21,23 @@ auto = {
 # maak een functie die een motor dict genereert zoals het voorbeeld hierboven
 # voorbeeld: create_motor(cylinders=8) == {"motor": {"cylinders": 8}}
 def create_motor(cylinders):
-    pass
+    if type(cylinders) != int:
+        raise TypeError("argument 'cylinders' must be of type int")
+    return {"motor": {"cylinders": cylinders}}
 
 
 # maak een functie die een kleuren dict genereert zoals het voorbeeld hierboven
 # voorbeeld: create_motor(kleuren={"rood", "geel"}) == {"rood", "geel"}}
-def create_kleuren(cylinders):
-    pass
+def create_kleuren(kleuren):
+    if type(kleuren) != set:
+        raise TypeError("argument 'kleuren' must be of type set")
+    for kleur in kleuren:
+        if type(kleur) != str:
+            raise TypeError("argument 'kleuren' contains {i} that is of type {t} and should be str".format(
+                i=kleur,
+                t=type(kleur)
+            ))
+    return {"kleuren": kleuren}
 
 
 # maak een functie die een auto dict genereert zoals het voorbeeld hierboven
@@ -43,5 +56,11 @@ def create_kleuren(cylinders):
 #     },
 #     "kleuren": {"rood"}
 # }
-def create_car(name, type, deuren, motor, kleuren):
-    pass
+def create_car(name: str, type: str, deuren: int, motor: dict, kleuren: dict):
+    return {
+        "name": name,
+        "type": type,
+        "deuren": deuren,
+        "motor": motor,
+        "kleuren": kleuren
+    }
