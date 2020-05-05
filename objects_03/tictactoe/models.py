@@ -75,8 +75,11 @@ class Game:
                 return self.players[self.turn]
             if self.has_end():
                 return None
-            self.turn += 1
-            self.turn %= 2
+            self.next_turn()
+
+    def next_turn(self):
+        self.turn += 1
+        self.turn %= 2
 
     def get_place(self) -> int:
         output = False
